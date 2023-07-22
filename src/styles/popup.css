@@ -1,0 +1,12 @@
+.popup__leaflet .leaflet-popup-content-wrapper {
+  width: 9em;
+  font-size: 16px;
+  color: rgb(255, 255, 255);
+  background-color: darkslategrey;
+  display: block;
+  border-left: yellow solid 5px;
+}
+.leaflet-popup-tip {
+  background-color: darkslategrey;
+  color: rgb(255, 0, 0);
+}

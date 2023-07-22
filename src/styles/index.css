@@ -1,0 +1,8 @@
+#root {
+  height: 100vh;
+}
+
+.leaflet-container {
+  height: 400px;
+  width: 500px;
+}
