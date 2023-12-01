@@ -9,7 +9,7 @@ function Header() {
       sx={{ backgroundColor: "transparent", color: "black" }}
     >
       <Typography variant="h6" textAlign={"center"} gutterBottom>
-        Logo
+        Running
       </Typography>
     </AppBar>
   );
