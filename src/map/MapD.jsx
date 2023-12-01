@@ -1,6 +1,8 @@
-import { Container } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
+import { Marker, Popup } from "react-leaflet";
+import DestinationMarker from "./DestinationMarker";
+import Statistics from "../containers/mobile/Statistics";
 // import LocationMarker from "./LocationMarker";
 // import NewLocationMarker from "./newLocationMarker";
 
@@ -19,7 +21,6 @@ function MapD() {
       });
     }
   }, []);
-
   return (
     <>
       {currentPosition && (
@@ -38,6 +39,10 @@ function MapD() {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
+          <Marker position={currentPosition}>
+            <Popup>{currentPosition.popup}</Popup>
+          </Marker>
+          <DestinationMarker currentPosition={currentPosition} />
         </MapContainer>
       )}
     </>
