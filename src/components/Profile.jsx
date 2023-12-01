@@ -1,4 +1,3 @@
-import React from "react";
 import { Profile as ProfileStyled } from "../styles/profile.js";
 
 function Profile() {

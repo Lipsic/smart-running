@@ -1,4 +1,3 @@
-import React from "react";
 import { Outlet } from "react-router";
 import { ThemeProvider } from "styled-components";
 import GlobalStyle from "../styles/globalStyles";

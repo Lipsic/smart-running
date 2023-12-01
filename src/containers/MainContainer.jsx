@@ -1,6 +1,6 @@
-import React from "react";
 import { MainStyles } from "../styles/main-container";
 import { useMediaQuery, Box } from "@mui/material";
+
 const styles = {
   margin: 0,
   padding: 0,
@@ -11,11 +11,12 @@ const styles = {
   gridTemplateRows: "50px 1fr 4fr 60px",
   overflow: "hidden",
 };
-function MainContainer(props) {
+
+function MainContainer({children}) {
   const mobileSize = useMediaQuery("(min-width:600px)");
   return (
     <MainStyles>
-      <Box sx={!mobileSize ? styles : {}}>{props.children}</Box>
+      <Box sx={!mobileSize ? styles : {}}>{children}</Box>
     </MainStyles>
   );
 }

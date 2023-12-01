@@ -1,15 +1,22 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
 import { Marker, Popup } from "react-leaflet";
 import DestinationMarker from "./DestinationMarker";
-import Statistics from "../containers/mobile/Statistics";
-// import LocationMarker from "./LocationMarker";
-// import NewLocationMarker from "./newLocationMarker";
+import { useAtom } from "jotai";
+import { writeOnlyStatistics } from "../store/statistics";
 
 function MapD() {
   const [currentPosition, setCurrentPosition] = useState(null);
-
-  // posição atual
+  const [_, setStats]=useAtom(writeOnlyStatistics)
+  
+  function handleClick(){
+    console.log('_', _)
+    setStats({
+      distance: 3,
+      duration: '3m',
+      start: {lat:0, lng:1}
+    })
+  }
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -21,6 +28,7 @@ function MapD() {
       });
     }
   }, []);
+
   return (
     <>
       {currentPosition && (
@@ -34,6 +42,7 @@ function MapD() {
             width: "100%",
             height: "100%",
           }}
+          
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -45,6 +54,7 @@ function MapD() {
           <DestinationMarker currentPosition={currentPosition} />
         </MapContainer>
       )}
+      <button onClick={handleClick}>Botão</button>
     </>
   );
 }

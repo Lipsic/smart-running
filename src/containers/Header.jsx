@@ -1,4 +1,3 @@
-import React from "react";
 import { AppBar, Typography } from "@mui/material";
 
 function Header() {
