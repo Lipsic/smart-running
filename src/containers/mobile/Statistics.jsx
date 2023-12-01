@@ -4,7 +4,7 @@ import Counter from "../../layout/Counter";
 
 function Statistics() {
   return (
-    <Grid container fluid="false">
+    <Grid container>
       <Grid item xs={12}>
         <Counter data="00:23:32" label="duração" />
       </Grid>

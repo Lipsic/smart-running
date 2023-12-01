@@ -6,15 +6,15 @@ const styles = {
   padding: 0,
   height: "100%",
   display: "grid",
-  columnGap: 3,
-  rowGap: 1,
+  columnGap: 0,
+  rowGap: 0,
   gridTemplateRows: "50px 1fr 4fr 60px",
+  overflow: "hidden",
 };
 function MainContainer(props) {
   const mobileSize = useMediaQuery("(min-width:600px)");
   return (
     <MainStyles>
-      {/* <Container sx={!mobileSize ? styles : {}}>{props.children}</Container> */}
       <Box sx={!mobileSize ? styles : {}}>{props.children}</Box>
     </MainStyles>
   );

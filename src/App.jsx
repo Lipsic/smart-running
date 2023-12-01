@@ -1,33 +1,18 @@
 import React from "react";
-import GlobalStyle from "./styles/globalStyles";
-import { ThemeProvider } from "styled-components";
-import MapD from "./map/MapD";
-import MainContainer from "./containers/MainContainer";
-import Header from "./containers/Header";
-import Navbar from "./components/mobile/Navbar";
-import Statistics from "./containers/mobile/Statistics";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import RootLayout from "./pages/RootLayout";
+import MapPage from "./pages/Map";
 // O marcador permanece sem o formulário ser preenchido
 
-const light = {
-  colors: {
-    div: "black",
-  },
-};
-
 function App() {
-  return (
-    <>
-      <ThemeProvider theme={light}>
-        <MainContainer>
-          <Header />
-          <Statistics />
-          <MapD />
-          <Navbar />
-        </MainContainer>
-      </ThemeProvider>
-      <GlobalStyle />
-    </>
-  );
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <RootLayout />,
+      children: [{ index: true, element: <MapPage /> }],
+    },
+  ]);
+  return <RouterProvider router={router} />;
 }
 
 export default App;

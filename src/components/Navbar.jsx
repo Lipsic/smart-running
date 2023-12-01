@@ -6,7 +6,7 @@ import BoltOutlinedIcon from "@mui/icons-material/BoltOutlined";
 import SignalCellularAltOutlinedIcon from "@mui/icons-material/SignalCellularAltOutlined";
 import PersonIcon from "@mui/icons-material/Person";
 
-import { NavStyles } from "../../styles/navbar";
+import { NavStyles } from "../styles/navbar";
 const content = [
   { label: "feed", icon: <FeedOutlinedIcon /> },
   { label: "community", icon: <GroupsOutlinedIcon /> },
