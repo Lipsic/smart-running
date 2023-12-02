@@ -1,4 +1,3 @@
-import React from "react";
 import { Grid, Typography } from "@mui/material";
 
 function Counter({ data, label }) {
@@ -7,7 +6,7 @@ function Counter({ data, label }) {
   return (
     <Grid container direction={"column"} alignItems={"center"}>
       <Typography variant="h4" component="h2" sx={{ fontWeight: "bold" }}>
-        {data}
+        {String(data)}
       </Typography>
       <Typography variant="h6" color={"grey"}>
         {capitalizedLabel}

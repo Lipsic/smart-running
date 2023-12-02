@@ -1,9 +1,21 @@
 import { useEffect, useState } from "react";
 import { useMapEvents, Marker, Popup } from "react-leaflet";
 import kmDistance from "./kmDistance";
+import { useAtom } from "jotai";
+import { writeOnlyStatistics } from "../store/statistics";
+
+let position = { lat: 0, lng: 0 }
 
 function DestinationMarker({ currentPosition }) {
-  const [position, setPosition] = useState({ lat: 0, lng: 0 });
+  const [markerPosition, setMarkerPosition] = useState(position)
+  const [_, setStats]= useAtom(writeOnlyStatistics)
+  const distance = kmDistance(
+       currentPosition.lat,
+       currentPosition.lng,
+       position.lat,
+       position.lng
+     ).toFixed(1);
+
   const map = useMapEvents({
     click() {
       map.locate();
@@ -13,41 +25,34 @@ function DestinationMarker({ currentPosition }) {
     },
   });
 
-  function onMapClick(e) {
-    setPosition(e.latlng);
-  }
-
   map.on("click", onMapClick);
-  let distance = 0;
 
-  if (
-    currentPosition?.lat !== undefined &&
-    currentPosition?.lng !== undefined &&
-    position?.lng !== undefined &&
-    position?.lat !== undefined
-  ) {
-    distance = kmDistance(
-      currentPosition.lat,
-      currentPosition.lng,
-      position.lat,
-      position.lng
-    );
+  function handleClick(){
+    setStats({
+      distance: distance,
+      start: {lat: currentPosition.lat, lng: currentPosition.lng},
+      end: {lat: position.lat, lng: position.lng},
+      duration: Math.round((distance * 1000) / 82),
+      mode: 'walking'
+    })
+    setMarkerPosition(position)
   }
 
+  function onMapClick(e) {
+    position = e.latlng
+    handleClick()
+   }
+
+   console.log('position after', position)
   return position === null ? null : (
-    <Marker position={position}>
+    <Marker position={markerPosition}>
       <Popup>
         <div>
           <p>You are going to here</p>
           <p>
             at{" "}
             <strong>
-              {kmDistance(
-                currentPosition.lat,
-                currentPosition.lng,
-                position.lat,
-                position.lng
-              ).toFixed(1)}
+              {distance}
             </strong>{" "}
             km from where you are
           </p>

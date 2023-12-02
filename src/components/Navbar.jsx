@@ -7,6 +7,7 @@ import SignalCellularAltOutlinedIcon from "@mui/icons-material/SignalCellularAlt
 import PersonIcon from "@mui/icons-material/Person";
 
 import { NavStyles } from "../styles/navbar";
+import { Link } from "react-router-dom";
 const content = [
   { label: "feed", icon: <FeedOutlinedIcon /> },
   { label: "community", icon: <GroupsOutlinedIcon /> },
@@ -31,13 +32,14 @@ function Navbar() {
         }}
       >
         {content.map((btn, i) => (
+          <Link to={btn.label} key={`navmenu-mob__${i}`} style={{textDecoration: 'none'}}>
           <IconButton
-            key={`navmenu-mob__${i}`}
             sx={{ display: "grid", justifyItems: "center" }}
           >
             {btn.icon}
             <Typography>{btn.label}</Typography>
           </IconButton>
+            </Link>
         ))}
       </ButtonGroup>
     </NavStyles>

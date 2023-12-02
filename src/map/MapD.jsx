@@ -2,21 +2,10 @@ import { useEffect, useState } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
 import { Marker, Popup } from "react-leaflet";
 import DestinationMarker from "./DestinationMarker";
-import { useAtom } from "jotai";
-import { writeOnlyStatistics } from "../store/statistics";
 
 function MapD() {
   const [currentPosition, setCurrentPosition] = useState(null);
-  const [_, setStats]=useAtom(writeOnlyStatistics)
-  
-  function handleClick(){
-    console.log('_', _)
-    setStats({
-      distance: 3,
-      duration: '3m',
-      start: {lat:0, lng:1}
-    })
-  }
+ 
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -54,7 +43,6 @@ function MapD() {
           <DestinationMarker currentPosition={currentPosition} />
         </MapContainer>
       )}
-      <button onClick={handleClick}>Botão</button>
     </>
   );
 }
