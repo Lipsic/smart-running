@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useMapEvents, Marker, Popup } from "react-leaflet";
 import kmDistance from "./kmDistance";
 import { useAtom } from "jotai";
@@ -27,23 +27,23 @@ function DestinationMarker({ currentPosition }) {
 
   map.on("click", onMapClick);
 
-  function handleClick(){
-    setStats({
-      distance: distance,
-      start: {lat: currentPosition.lat, lng: currentPosition.lng},
-      end: {lat: position.lat, lng: position.lng},
-      duration: Math.round((distance * 1000) / 82),
-      mode: 'walking'
-    })
-    setMarkerPosition(position)
-  }
+
 
   function onMapClick(e) {
     position = e.latlng
-    handleClick()
-   }
+    setMarkerPosition(e.latlng)
+    
+  }
+  
+  setStats({
+    distance: distance,
+    start: {lat: currentPosition.lat, lng: currentPosition.lng},
+    end: {lat: position.lat, lng: position.lng},
+    duration: Math.round((distance * 1000) / 82),
+    mode: 'walking'
+  })
 
-   console.log('position after', position)
+   console.log('markerPosition', markerPosition)
   return position === null ? null : (
     <Marker position={markerPosition}>
       <Popup>
