@@ -40,10 +40,8 @@ function DestinationMarker({ currentPosition }) {
     start: {lat: currentPosition.lat, lng: currentPosition.lng},
     end: {lat: position.lat, lng: position.lng},
     duration: Math.round((distance * 1000) / 82),
-    mode: 'walking'
   })
 
-   console.log('markerPosition', markerPosition)
   return position === null ? null : (
     <Marker position={markerPosition}>
       <Popup>

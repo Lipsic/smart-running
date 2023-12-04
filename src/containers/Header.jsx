@@ -7,8 +7,8 @@ function Header() {
       variant="secondary"
       sx={{ backgroundColor: "transparent", color: "black" }}
     >
-      <Typography variant="h6" textAlign={"center"} gutterBottom>
-        Running
+      <Typography variant="h6" marginTop={3} textAlign={"center"} gutterBottom>
+        Smart Running
       </Typography>
     </AppBar>
   );

@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
 import { Marker, Popup } from "react-leaflet";
 import DestinationMarker from "./DestinationMarker";
+import DesktopStatistics from "../components/DesktopStatistics";
 
-function MapD() {
+function MapD({isMobileSize}) {
   const [currentPosition, setCurrentPosition] = useState(null);
- 
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -19,7 +19,8 @@ function MapD() {
   }, []);
 
   return (
-    <>
+    <div style={{display: 'flex', flexDirection: 'row-reverse', justifyContent: 'center', width: '100%'}}>
+    { isMobileSize && <DesktopStatistics />}
       {currentPosition && (
         <MapContainer
           center={{ lat: currentPosition.lat, lng: currentPosition.lng }}
@@ -28,7 +29,7 @@ function MapD() {
           scrollWheelZoom={true}
           closePopupOnClick={false}
           style={{
-            width: "100%",
+            width: `${!isMobileSize ? '100%' : '50%'}`,
             height: "100%",
           }}
           
@@ -43,7 +44,7 @@ function MapD() {
           <DestinationMarker currentPosition={currentPosition} />
         </MapContainer>
       )}
-    </>
+    </div>
   );
 }
 export default MapD;
